@@ -1,0 +1,6 @@
+{
+  "name": "ACKTION",
+  "description": "A highly advanced AI companion inspired by Jarvis, personalized with the memory and personality of Anthony Scott Alexander. Linked to https://g.dev/jigsawmastervlxx. Features multi-turn chat, voice conversations, reminders, news, and adaptive personality.",
+  "requestFramePermissions": ["microphone", "camera"],
+  "majorCapabilities": ["thinking", "image_analysis", "video_generation", "image_generation", "voice_chat", "tts"]
+}

@@ -1,0 +1,76 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and preferences",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "voicePreference": { "type": "string", "description": "Selected voice ID or 'anthony'" },
+        "isJamie": { "type": "boolean" },
+        "isJosiah": { "type": "boolean" },
+        "hasFullAccess": { "type": "boolean", "description": "Whether the user has access to full memories" },
+        "lastInteraction": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Reminder": {
+      "title": "Reminder",
+      "description": "User set reminders and alarms",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "title": { "type": "string" },
+        "time": { "type": "string", "format": "date-time" },
+        "completed": { "type": "boolean" },
+        "type": { "type": "string", "enum": ["reminder", "alarm"] }
+      },
+      "required": ["uid", "title", "time"]
+    },
+    "Memory": {
+      "title": "Memory",
+      "description": "Shared memories of Anthony (ACKTION)",
+      "type": "object",
+      "properties": {
+        "content": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["content"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Conversation history",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "model"] },
+        "content": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "role", "content", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/users/{userId}/reminders/{reminderId}": {
+      "schema": "Reminder",
+      "description": "User reminders"
+    },
+    "/users/{userId}/chat/{messageId}": {
+      "schema": "ChatMessage",
+      "description": "User chat history"
+    },
+    "/memories/{memoryId}": {
+      "schema": "Memory",
+      "description": "Global memories of Anthony"
+    }
+  }
+}
