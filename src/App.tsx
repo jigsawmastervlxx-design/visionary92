@@ -207,6 +207,7 @@ export default function App() {
             
             // Check family registry
             const registrySnap = await getDoc(doc(db, 'family_registry', u.email || ''));
+            const isDeveloper = u.email === 'jigsawmastervlxx@gmail.com';
             const isFamily = registrySnap.exists() || isJamie || isJosiah;
             
             const newProfile: UserProfile = {
@@ -219,7 +220,7 @@ export default function App() {
               isJamie,
               isJosiah,
               isFamily,
-              hasFullAccess: isFamily
+              hasFullAccess: isFamily || isDeveloper
             };
             await setDoc(userDoc, newProfile);
             setProfile(newProfile);
